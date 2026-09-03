@@ -55,6 +55,7 @@
     .logo-container img {
       height: 50px;
       width: auto;
+      object-fit: contain;
     }
 
     .header-right {
@@ -243,6 +244,12 @@
       font-weight: 700;
       border-radius: 2px;
       font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .cta-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(234, 76, 137, 0.2);
     }
 
     .cta-lime .cta-link {
@@ -300,7 +307,7 @@
 <div class="slide slide-title">
   <div class="header">
     <div class="logo-container">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAF3AAAA0vCAYAAADdIv7hAAAAtGVYSWZJSSoACAAAAAYAEgEDAAEAAAABAAAAGgEFAAEAAABWAAAAGwEDAAEAAABkAAAAKAEDAAEAAABsAAAAkgEDAAEAAAC8AQAAmgECABABAADQAQAAAAAAAAIgAAACgAAABJAAAAABQAAA" style="max-width: 200px;">
+      <img src="logo.png" alt="SignatureHD">
     </div>
     <div class="header-right">
       Prepared for Songezo<br>
