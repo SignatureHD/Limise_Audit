@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limise Growth Strategy | SignatureHD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    html, body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: white;
+      color: #1a1a1a;
+    }
+    
+    .slide {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 3rem 4rem;
+      page-break-after: always;
+      position: relative;
+    }
+
+    /* TYPOGRAPHY */
+    h1 { font-size: 64px; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem; }
+    h2 { font-size: 48px; font-weight: 700; line-height: 1.2; margin-bottom: 1.5rem; }
+    h3 { font-size: 28px; font-weight: 700; line-height: 1.3; }
+    p { font-size: 18px; font-weight: 400; line-height: 1.7; }
+    .small-text { font-size: 14px; font-weight: 500; color: #666; }
+
+    /* COLORS */
+    .pink { color: #EA4C89; }
+    .lime { color: #B5F267; }
+    .dark { color: #1a1a1a; }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-container img {
+      height: 50px;
+      width: auto;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 12px;
+      color: #999;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    /* DESIGN ACCENTS */
+    .accent { 
+      display: inline-block;
+      color: #EA4C89;
+      font-style: italic;
+      font-size: 16px;
+      margin-bottom: 0.5rem;
+    }
+
+    .bracket { font-style: italic; color: #999; }
+
+    /* SLIDE TEMPLATES */
+    .slide-title {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .slide-title h1 {
+      max-width: 800px;
+      margin-bottom: 1rem;
+    }
+
+    .slide-title .subtitle {
+      font-size: 24px;
+      color: #666;
+      font-weight: 400;
+      max-width: 700px;
+    }
+
+    .slide-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* INSIGHT BOXES */
+    .insight {
+      background: #f9f9f9;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      border-left: 4px solid #EA4C89;
+      border-radius: 2px;
+    }
+
+    .insight p {
+      margin-bottom: 1rem;
+    }
+
+    .insight p:last-child {
+      margin-bottom: 0;
+    }
+
+    .insight strong {
+      font-weight: 700;
+      color: #1a1a1a;
+    }
+
+    /* GRID LAYOUTS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    /* CARDS */
+    .card {
+      padding: 1.5rem;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      background: white;
+    }
+
+    .card-highlight {
+      border-left: 4px solid #EA4C89;
+      background: #fff5f5;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      margin-bottom: 0.75rem;
+      color: #EA4C89;
+    }
+
+    .card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      font-size: 15px;
+    }
+
+    thead {
+      background: #EA4C89;
+      color: white;
+    }
+
+    th {
+      padding: 1rem;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    tbody tr:nth-child(odd) {
+      background: #fafafa;
+    }
+
+    .highlight-row {
+      background: #fff5f5 !important;
+      font-weight: 700;
+      color: #EA4C89;
+    }
+
+    /* CTA SECTION */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .cta-box {
+      padding: 2rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    .cta-pink {
+      background: #EA4C89;
+      color: white;
+    }
+
+    .cta-lime {
+      background: #B5F267;
+      color: #1a1a1a;
+    }
+
+    .cta-box h3 {
+      font-size: 22px;
+      margin-bottom: 1rem;
+      color: inherit;
+    }
+
+    .cta-box p {
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-link {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: white;
+      color: #EA4C89;
+      text-decoration: none;
+      font-weight: 700;
+      border-radius: 2px;
+      font-size: 14px;
+    }
+
+    .cta-lime .cta-link {
+      color: #1a1a1a;
+    }
+
+    /* FOOTER SLIDE */
+    .slide-footer {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: #EA4C89;
+      color: white;
+    }
+
+    .slide-footer h1 {
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .slide-footer .tagline {
+      font-size: 32px;
+      font-style: italic;
+      color: #B5F267;
+      font-weight: 400;
+      margin-bottom: 2rem;
+    }
+
+    .slide-footer p {
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      .slide { page-break-after: always; }
+    }
+
+    @page { margin: 0; }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .slide { padding: 2rem; }
+      h1 { font-size: 40px; }
+      h2 { font-size: 32px; }
+      .grid-2, .cta-grid { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- SLIDE 1: COVER -->
+<div class="slide slide-title">
+  <div class="header">
+    <div class="logo-container">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAF3AAAA0vCAYAAADdIv7hAAAAtGVYSWZJSSoACAAAAAYAEgEDAAEAAAABAAAAGgEFAAEAAABWAAAAGwEDAAEAAABkAAAAKAEDAAEAAABsAAAAkgEDAAEAAAC8AQAAmgECABABAADQAQAAAAAAAAIgAAACgAAABJAAAAABQAAA" style="max-width: 200px;">
+    </div>
+    <div class="header-right">
+      Prepared for Songezo<br>
+      www.signaturehd.co.za
+    </div>
+  </div>
+
+  <h1>Limise Growth Strategy</h1>
+  <p class="subtitle">Building the Digital Engine for Skills Development Impact</p>
+  <p style="margin-top: 3rem; color: #999; font-size: 14px;"><span class="bracket">{</span> your business proposition is strong. your digital presence isn't yet. <span class="bracket">}</span></p>
+</div>
+
+<!-- SLIDE 2: THE OPPORTUNITY -->
+<div class="slide slide-content">
+  <div class="header" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+    <div class="small-text">SIGNATUREHD</div>
+  </div>
+
+  <h2>Your Strongest Asset Is Buried</h2>
+  
+  <div class="insight">
+    <p><strong>Limise has built a genuinely strong business proposition.</strong></p>
+    <p>Your strategic thinking is sound. Your service offering is differentiated. But your website doesn't yet make it visible to the right buyers.</p>
+  </div>
+
+  <div class="insight">
+    <p class="accent">The Real Opportunity:</p>
+    <p><strong class="pink">Position Limise as The Skills Development Operating Partner</strong></p>
+    <p>Not "another SDF firm." You connect SETA compliance, learning strategy, programme management, learner support and measurable impact.</p>
+    <p><strong>That's the story. The website should tell it.</strong></p>
+  </div>
+</div>
+
+<!-- SLIDE 3: WHAT'S BROKEN -->
+<div class="slide slide-content">
+  <div class="header" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+    <div class="small-text">SIGNATUREHD</div>
+  </div>
+
+  <h2>Three Urgent Issues</h2>
+  
+  <div class="grid-2">
+    <div class="card card-highlight">
+      <h3>Remove Prototype Content</h3>
+      <p>Live on your site: "This is where the booking calendar goes..." and "A live chat widget will sit here..." These are internal build notes visible to prospects.</p>
+    </div>
+    
+    <div class="card card-highlight">
+      <h3>Replace Zero Metrics</h3>
+      <p>"Real Impact. Real Results" displays 0%, 0, 0. Visually reads as "Limise achieved zero." Remove until real data exists.</p>
+    </div>
+
+    <div class="card">
+      <h3>Reconcile Your Story</h3>
+      <p>Website and company profile disagree. Six services described, five shown. Leadership titles inconsistent. Solve as one brand exercise.</p>
+    </div>
+
+    <div class="card">
+      <h3>Highlight Your Strongest Idea</h3>
+      <p>The real sales story—connecting compliance, learning, strategy and measurement—is buried. Make it your homepage hero.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4: THE DIFFERENTIATION -->
+<div class="slide slide-content">
+  <div class="header" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+    <div class="small-text">SIGNATUREHD</div>
+  </div>
+
+  <h2 class="pink">Why Skills Development Is Fragmented</h2>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Provider</th>
+        <th>Usually Solves</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>SDF Firm</strong></td>
+        <td>Compliance (WSP/ATR)</td>
+      </tr>
+      <tr>
+        <td><strong>Training Provider</strong></td>
+        <td>Delivery</td>
+      </tr>
+      <tr>
+        <td><strong>L&D Consultant</strong></td>
+        <td>Strategy</td>
+      </tr>
+      <tr class="highlight-row">
+        <td><strong>Limise</strong></td>
+        <td>✓ Connects All Three + Measures Impact</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="insight">
+    <p><strong>This is your differentiation.</strong></p>
+    <p>You're not another compliance provider. You're the operating partner who makes the entire ecosystem work and measures what actually changed.</p>
+    <p><strong>Make that visible everywhere.</strong></p>
+  </div>
+</div>
+
+<!-- SLIDE 5: SMARTSUITE SOLUTIONS -->
+<div class="slide slide-content">
+  <div class="header" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+    <div class="small-text">SIGNATUREHD</div>
+  </div>
+
+  <h2>How SignatureHD Solves This</h2>
+  <p style="margin-bottom: 2rem; color: #666;">Six products. One complete acquisition machine.</p>
+  
+  <div class="grid-3">
+    <div class="card">
+      <div class="small-text pink">Solves: Lead Capture</div>
+      <h3>SmartChat</h3>
+      <p>24/7 AI enquiry agent. Routes intent. Books consultations. Already live at bsi-institute.co.za</p>
+    </div>
+    
+    <div class="card">
+      <div class="small-text pink">Solves: Brand Building</div>
+      <h3>SmartWeb</h3>
+      <p>Six service landing pages. Each speaks to a buyer problem. Ranks in organic search.</p>
+    </div>
+
+    <div class="card">
+      <div class="small-text pink">Solves: Follow-Up</div>
+      <h3>SmartCRM</h3>
+      <p>Centralise enquiries. Track pipeline. Route to consultants. Everything in one place.</p>
+    </div>
+
+    <div class="card">
+      <div class="small-text pink">Solves: Nurture</div>
+      <h3>SmartMail</h3>
+      <p>Auto follow-ups. Deadline reminders. Share resources. Keep prospects warm.</p>
+    </div>
+
+    <div class="card">
+      <div class="small-text pink">Solves: Lead Magnets</div>
+      <h3>SmartAD</h3>
+      <p>Targeted campaigns. "WSP/ATR help" searches. Capture hot intent. Cost-effective.</p>
+    </div>
+
+    <div class="card">
+      <div class="small-text pink">Solves: Proof</div>
+      <h3>SmartReview</h3>
+      <p>Collect testimonials. Verified outcomes. Build credibility. Display on site.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: BUYER PERSONAS -->
+<div class="slide slide-content">
+  <div class="header" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+    <div class="small-text">SIGNATUREHD</div>
+  </div>
+
+  <h2>Different Buyers. Different Questions.</h2>
+  
+  <div class="grid-2">
+    <div class="card">
+      <h3>HR Director</h3>
+      <p><strong class="pink">"Can someone take this compliance burden away?"</strong></p>
+      <p style="margin-top: 1rem;">Message: Stay compliant AND in control. Not a black box.</p>
+    </div>
+
+    <div class="card">
+      <h3>L&D Manager</h3>
+      <p><strong class="pink">"Is our training actually working?"</strong></p>
+      <p style="margin-top: 1rem;">Message: Measure behaviour change. Get evidence, not hope.</p>
+    </div>
+
+    <div class="card">
+      <h3>CFO</h3>
+      <p><strong class="pink">"What are we getting for this R2m+ spend?"</strong></p>
+      <p style="margin-top: 1rem;">Message: Turn skills spend into measurable business value.</p>
+    </div>
+
+    <div class="card">
+      <h3>Training Provider</h3>
+      <p><strong class="pink">"Can someone help us sustain corporate sponsors?"</strong></p>
+      <p style="margin-top: 1rem;">Message: Partnership ecosystem + sponsorship access.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 7: RECOMMENDED PHASES -->
+<div class="slide slide-content">
+  <div class="header" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+    <div class="small-text">SIGNATUREHD</div>
+  </div>
+
+  <h2>The Three-Phase Approach</h2>
+  
+  <div style="margin-top: 2rem;">
+    <div style="padding-bottom: 2rem; border-bottom: 1px solid #e0e0e0;">
+      <h3 class="pink">Phase 1: Fix & Position</h3>
+      <p style="margin-top: 1rem; font-size: 15px;">Remove prototype content · Fix zero metrics · Sharpen positioning · Rebuild homepage · Create six service landing pages · Build buyer self-selection architecture</p>
+    </div>
+
+    <div style="padding: 2rem 0; border-bottom: 1px solid #e0e0e0;">
+      <h3 class="pink">Phase 2: Capture & Convert</h3>
+      <p style="margin-top: 1rem; font-size: 15px;">SmartChat enquiry agent · SmartCRM pipeline · SmartMail automated follow-up · Create lead magnet (Skills Readiness Assessment) · Integrate calendar booking</p>
+    </div>
+
+    <div style="padding-top: 2rem;">
+      <h3 class="pink">Phase 3: Build Demand</h3>
+      <p style="margin-top: 1rem; font-size: 15px;">Founder-led LinkedIn content · SEO for high-intent keywords · Email newsletter · Webinars · Case studies · Selective paid acquisition</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 8: NEXT STEPS -->
+<div class="slide slide-content">
+  <div class="header" style="border-bottom: 1px solid #f0f0f0; padding-bottom: 1rem; margin-bottom: 2rem;">
+    <div class="small-text">SIGNATUREHD</div>
+  </div>
+
+  <h2>Let's Talk About Your Digital Future</h2>
+  
+  <p style="margin-bottom: 2rem; color: #666; font-size: 16px;">You don't primarily need "a website." You need the complete layer between having expertise and systematically turning that expertise into demand, conversations, prospects and paying clients.</p>
+  
+  <div class="cta-grid">
+    <div class="cta-box cta-pink">
+      <h3>Book a Strategy Session</h3>
+      <p>Let's map your digital growth engine. Discuss which phase makes sense first. Understand your current bottleneck.</p>
+      <a href="https://www.signaturehd.co.za/" class="cta-link">Visit SignatureHD →</a>
+    </div>
+    
+    <div class="cta-box cta-lime">
+      <h3>See SmartChat Live</h3>
+      <p>Want to see how SmartChat works before we discuss it? It's already live on bsi-institute.co.za. Test it yourself.</p>
+      <a href="https://www.bsi-institute.co.za/" class="cta-link">Test SmartChat →</a>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 9: CLOSING -->
+<div class="slide slide-footer">
+  <div class="small-text" style="color: #B5F267;">SIGNATUREHD</div>
+  <h1>Make Your Mark</h1>
+  <div class="tagline">AI-Driven Digital Growth</div>
+  <p>Gqeberha, Eastern Cape<br>www.signaturehd.co.za</p>
+</div>
+
+</body>
+</html>
